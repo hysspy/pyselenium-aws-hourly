@@ -11,9 +11,9 @@ Linkedin : Herwin Yudha Setyawan
 
 ## Project Name
 
-Automation M1 AWS Hourly Report
+Automation AWS Hourly Report
 
-M1 AWS Hourly Report Mail
+AWS Hourly Report Mail
 
 
 ## Version Update
