@@ -60,7 +60,7 @@ driver = Firefox(options = options)
 ob = Screenshot.Screenshot()
 
 # Navigate to the url
-driver.get('M1-aws-link')
+driver.get('web-aws-link')
 
 # Take a screenshot
 driver.save_screenshot("screenshot-1.png")
@@ -112,7 +112,7 @@ S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 driver.set_window_size(S('Width'),1263) # May need manual adjustment                                                                                                                
 #ob.find_element(By.TAG_NAME, 'body').screenshot('screenshot-7.png')
 element = driver.find_element(By.TAG_NAME, 'body')
-img_url = ob.get_element(driver, element, save_path=r'C:\Path\To\Python\', image_name='M0AWS.png')
+img_url = ob.get_element(driver, element, save_path=r'C:\Path\To\Python\', image_name='webAWS.png')
 oprint(img_url)
 oprint("GET FINAL ScreenShot OK")
 
@@ -127,14 +127,14 @@ time.sleep(2)
 
 #######Crop image#######
 #Create an Image Object from an Image
-im = Image.open('M0AWS.png')
+im = Image.open('webAWS.png')
 oprint("Load Image OK")
 
 #left, upper, right, lower Crop
 cropped = im.crop((43,75,1356,744))
 
 #Save the cropped image
-cropped.save('M1AWS.png')
+cropped.save('webAWS.png')
 oprint("CROP OK")
 
 oprint("Preparing Email")
@@ -147,8 +147,8 @@ oprint("Preparing Email")
 html = '''
     <html>
         <body>
-            <h3>M1 AWS DBMonitoring</h3>
-            <img src='cid:M1AWS.png'> 
+            <h3>web AWS DBMonitoring</h3>
+            <img src='cid:webAWS.png'> 
         </body>
     </html>
     '''
@@ -195,15 +195,15 @@ email_message = MIMEMultipart()
 email_message['From'] = email_from
 email_message['To'] = ','.join(toaddr)
 email_message['Cc'] = ','.join(cc)
-email_message['Subject'] = f'M1 AWS Hourly Report {date_str} SGT'
+email_message['Subject'] = f'web AWS Hourly Report {date_str} SGT'
 
 # Attach the html doc defined earlier, as a MIMEText html content type to the MIME message
 email_message.attach(MIMEText(html, "html"))
 
 # Attach more (documents)
-## Apply function with extra_header on m1aws.png. This will render m1aws.png in the html content
+## Apply function with extra_header on webaws.png. This will render webaws.png in the html content
 ##############################################################
-attach_file_to_email(email_message, 'M1AWS.png', {'Content-ID': '<M1AWS>'})
+attach_file_to_email(email_message, 'webAWS.png', {'Content-ID': '<webAWS>'})
 ##############################################################
 
 # Convert it as a string
